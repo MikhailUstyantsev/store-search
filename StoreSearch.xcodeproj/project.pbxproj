@@ -13,6 +13,7 @@
 		83F3F45728B98B3100026941 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3F45528B98B3100026941 /* Main.storyboard */; };
 		83F3F45928B98B3200026941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F3F45828B98B3200026941 /* Assets.xcassets */; };
 		83F3F45C28B98B3200026941 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F3F45A28B98B3200026941 /* LaunchScreen.storyboard */; };
+		83F3F46428BA040400026941 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F46328BA040400026941 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		83F3F45828B98B3200026941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83F3F45B28B98B3200026941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83F3F45D28B98B3200026941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83F3F46328BA040400026941 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				83F3F44F28B98B3100026941 /* AppDelegate.swift */,
 				83F3F45128B98B3100026941 /* SceneDelegate.swift */,
 				83F3F45328B98B3100026941 /* SearchViewController.swift */,
+				83F3F46328BA040400026941 /* SearchResult.swift */,
 				83F3F45528B98B3100026941 /* Main.storyboard */,
 				83F3F45828B98B3200026941 /* Assets.xcassets */,
 				83F3F45A28B98B3200026941 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				83F3F45428B98B3100026941 /* SearchViewController.swift in Sources */,
 				83F3F45028B98B3100026941 /* AppDelegate.swift in Sources */,
+				83F3F46428BA040400026941 /* SearchResult.swift in Sources */,
 				83F3F45228B98B3100026941 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
