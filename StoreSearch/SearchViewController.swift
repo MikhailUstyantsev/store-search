@@ -21,6 +21,13 @@ class SearchViewController: UIViewController {
     var hasSearched = false
     var searchResults = [SearchResult]()
     
+    struct TableView {
+        struct CellIdentifiers {
+            static let searchResultCell = "SearchResultCell"
+            static let nothingFoundCell = "NothingFoundCell"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -28,6 +35,11 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupView()
+        
+        var cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
+        cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
     }
 
     private func setupView() {
@@ -75,23 +87,17 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "SearchResultCell"
+        let cellIdentifier = TableView.CellIdentifiers.searchResultCell
         
-        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
-        }
-        var configuration = cell.defaultContentConfiguration()
         if searchResults.count == 0 {
-            configuration.text = "(Nothing found)"
-            configuration.secondaryText = ""
+            return tableView.dequeueReusableCell(withIdentifier: TableView.CellIdentifiers.nothingFoundCell, for: indexPath)
         } else {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchResultCell
         let searchResult = searchResults[indexPath.row]
-        configuration.text = searchResult.name
-        configuration.secondaryText = searchResult.artistName
+            cell.nameLabel.text = searchResult.name
+            cell.artistNameLabel.text = searchResult.artistName
+            return cell
         }
-        cell.contentConfiguration = configuration
-        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
