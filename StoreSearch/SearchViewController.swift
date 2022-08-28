@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
         let searchBar = UISearchBar()
         searchBar.placeholder = "App name, artist, song, album, e-book"
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.barTintColor = UIColor(named: "SearchBar")
         return searchBar
     }()
     
@@ -40,6 +41,7 @@ class SearchViewController: UIViewController {
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
         cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
+        searchBar.becomeFirstResponder()
     }
 
     private func setupView() {
