@@ -63,17 +63,22 @@ class SearchViewController: UIViewController {
 //MARK: - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if !searchBar.text!.isEmpty {
         searchBar.resignFirstResponder()
-        if searchBar.text! != "justin bieber" {
-        for i in 0...2 {
-            let searchResult = SearchResult()
-            searchResult.name = String(format: "Fake Result %d for", i)
-            searchResult.artistName = searchBar.text!
-            searchResults.append(searchResult)
-            }
-        }
+        
         hasSearched = true
+        searchResults = []
+        
+        let url = iTunesURL(searchText: searchBar.text!)
+        print("URL: '\(url)'")
+            
+            if let data = performStoreRequest(with: url) {
+               searchResults = parse(data: data)
+                searchResults.sort(by: <)
+//  this only works because you added your own func < (look at SearchResult bottom) to overload the less-than operator so it takes two SearchResult objects and compares them
+            }
         tableView.reloadData()
+        }
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -97,7 +102,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchResultCell
         let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.name
-            cell.artistNameLabel.text = searchResult.artistName
+            if searchResult.artist.isEmpty {
+                cell.artistNameLabel.text = "Unknown"
+            } else {
+                cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artist, searchResult.type)
+            }
             return cell
         }
     }
@@ -124,5 +133,48 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return indexPath
           }
     }
+    
+//    MARK: - Networking
+    func performStoreRequest(with url: URL) -> Data? {
+        do {
+//            return try String(contentsOf: url, encoding: .utf8)
+//            Change to Data?
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            showNetworkError()
+        return nil
+        }
+    }
+    
+    func parse(data: Data) -> [SearchResult] {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            return result.results
+        } catch {
+            print("JSON Error: \(error)")
+            return []
+        }
+    }
+    
+    func showNetworkError() {
+        let alert = UIAlertController(title: "Whoops...", message: "There was an error accessing the iTunes Store." + " Please try again", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+//    MARK: - Helper Methods
+    func iTunesURL(searchText: String) -> URL {
+        let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@", encodedText)
+        let url = URL(string: urlString)
+        return url!
+    }
+    
+    
+    
     
 }
