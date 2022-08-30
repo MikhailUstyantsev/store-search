@@ -34,6 +34,7 @@ class SearchViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = .systemBackground
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         searchBar.delegate = self
@@ -50,50 +51,62 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
 
+    
     private func setupView() {
+//        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+
         view.addSubview(searchBar)
-        view.addSubview(toolBarItem)
+        view.addSubview(segmentedControl)
         
+        let margins = view.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchBar.bottomAnchor.constraint(equalTo: toolBarItem.topAnchor),
+            segmentedControl.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
             
-            toolBarItem.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            toolBarItem.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            toolBarItem.bottomAnchor.constraint(equalTo: tableView.topAnchor)
+            segmentedControl.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            margins.trailingAnchor.constraint(equalTo: segmentedControl.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8)
         ])
     }
 
-//    MARK: - Segmented Control on top of Tool Bar
+//    MARK: - Segmented Control (on top of Tool Bar?)
 
-    let toolBarItem: UIToolbar = {
-        let toolBar = UIToolbar()
+//    let toolBarItem: UIToolbar = {
+//        let toolBar = UIToolbar()
+//        let segmentedControl = UISegmentedControl(items: ["All", "Music", "Software", "E-books"])
+//        segmentedControl.addTarget(self, action: #selector(searchSegmentDidChange(_:)), for: .valueChanged)
+//        segmentedControl.selectedSegmentTintColor = .lightGray
+//        let barItem = UIBarButtonItem(customView: segmentedControl)
+//        toolBar.setItems([barItem], animated: true)
+//        toolBar.translatesAutoresizingMaskIntoConstraints = false
+//        return toolBar
+//    }()
+    
+    let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["All", "Music", "Software", "E-books"])
         segmentedControl.addTarget(self, action: #selector(searchSegmentDidChange(_:)), for: .valueChanged)
+        segmentedControl.backgroundColor = .systemTeal
         segmentedControl.selectedSegmentTintColor = .lightGray
-        let barItem = UIBarButtonItem(customView: segmentedControl)
-        toolBar.setItems([barItem], animated: true)
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
-        return toolBar
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        return segmentedControl
     }()
-
     
     @objc func searchSegmentDidChange(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-         case 0: view.backgroundColor = .systemIndigo
-         case 1: view.backgroundColor = .systemYellow
-         case 2: view.backgroundColor = .systemPink
-        default: view.backgroundColor = .systemTeal
-        }
+        performSearch()
     }
 }
 
 //MARK: - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+      performSearch()
+    }
+
+    func performSearch() {
         if !searchBar.text!.isEmpty {
         searchBar.resignFirstResponder()
         dataTask?.cancel()
@@ -103,7 +116,7 @@ extension SearchViewController: UISearchBarDelegate {
         hasSearched = true
         searchResults = []
         
-            let url = iTunesURL(searchText: searchBar.text!)
+            let url = iTunesURL(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             
             let session = URLSession.shared
             
@@ -220,9 +233,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 //    MARK: - Helper Methods
-    func iTunesURL(searchText: String) -> URL {
+    func iTunesURL(searchText: String, category: Int) -> URL {
+        
+        let kind: String
+        switch category {
+        case 1: kind = "musicTrack"
+        case 2: kind = "software"
+        case 3: kind = "ebook"
+        default: kind = ""
+        }
+        
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@", encodedText)
+        let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=200&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
     }
