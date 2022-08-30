@@ -52,18 +52,43 @@ class SearchViewController: UIViewController {
 
     private func setupView() {
         view.addSubview(searchBar)
+        view.addSubview(toolBarItem)
+        
         
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchBar.bottomAnchor.constraint(equalTo: tableView.topAnchor)
+            searchBar.bottomAnchor.constraint(equalTo: toolBarItem.topAnchor),
+            
+            toolBarItem.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolBarItem.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            toolBarItem.bottomAnchor.constraint(equalTo: tableView.topAnchor)
         ])
     }
 
+//    MARK: - Segmented Control on top of Tool Bar
+
+    let toolBarItem: UIToolbar = {
+        let toolBar = UIToolbar()
+        let segmentedControl = UISegmentedControl(items: ["All", "Music", "Software", "E-books"])
+        segmentedControl.addTarget(self, action: #selector(searchSegmentDidChange(_:)), for: .valueChanged)
+        segmentedControl.selectedSegmentTintColor = .lightGray
+        let barItem = UIBarButtonItem(customView: segmentedControl)
+        toolBar.setItems([barItem], animated: true)
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        return toolBar
+    }()
+
     
-    
-    
+    @objc func searchSegmentDidChange(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+         case 0: view.backgroundColor = .systemIndigo
+         case 1: view.backgroundColor = .systemYellow
+         case 2: view.backgroundColor = .systemPink
+        default: view.backgroundColor = .systemTeal
+        }
+    }
 }
 
 //MARK: - Search Bar Delegate
