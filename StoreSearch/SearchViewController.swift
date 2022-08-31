@@ -54,7 +54,9 @@ class SearchViewController: UIViewController {
     
     private func setupView() {
 //        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-
+        viewRespectsSystemMinimumLayoutMargins = false
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 8.0)
+        
         view.addSubview(searchBar)
         view.addSubview(segmentedControl)
         
@@ -72,23 +74,12 @@ class SearchViewController: UIViewController {
         ])
     }
 
-//    MARK: - Segmented Control (on top of Tool Bar?)
-
-//    let toolBarItem: UIToolbar = {
-//        let toolBar = UIToolbar()
-//        let segmentedControl = UISegmentedControl(items: ["All", "Music", "Software", "E-books"])
-//        segmentedControl.addTarget(self, action: #selector(searchSegmentDidChange(_:)), for: .valueChanged)
-//        segmentedControl.selectedSegmentTintColor = .lightGray
-//        let barItem = UIBarButtonItem(customView: segmentedControl)
-//        toolBar.setItems([barItem], animated: true)
-//        toolBar.translatesAutoresizingMaskIntoConstraints = false
-//        return toolBar
-//    }()
+//    MARK: - Segmented Control
     
     let segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["All", "Music", "Software", "E-books"])
         segmentedControl.addTarget(self, action: #selector(searchSegmentDidChange(_:)), for: .valueChanged)
-        segmentedControl.backgroundColor = .systemTeal
+        segmentedControl.backgroundColor = .systemGray5
         segmentedControl.selectedSegmentTintColor = .lightGray
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         return segmentedControl
@@ -174,12 +165,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableView.CellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
         let searchResult = searchResults[indexPath.row]
-            cell.nameLabel.text = searchResult.name
-            if searchResult.artist.isEmpty {
-                cell.artistNameLabel.text = "Unknown"
-            } else {
-                cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artist, searchResult.type)
-            }
+            cell.configure(for: searchResult)
             return cell
         }
     }
