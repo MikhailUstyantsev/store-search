@@ -184,6 +184,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinatinVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
+        destinatinVC.modalPresentationStyle = .overFullScreen
+        destinatinVC.searchResult = searchResults[indexPath.row]
+        self.present(destinatinVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -230,7 +237,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=200&entity=\(kind)"
+        let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=50&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
     }
