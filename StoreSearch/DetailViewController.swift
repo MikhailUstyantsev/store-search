@@ -12,6 +12,18 @@ class DetailViewController: UIViewController {
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
     
+    required init?(coder aDecoder: NSCoder) {
+      super.init(coder: aDecoder)
+      transitioningDelegate = self
+    }
+    
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
+    var dismissStyle = AnimationStyle.fade
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -29,6 +41,10 @@ class DetailViewController: UIViewController {
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
         
+        view.backgroundColor = UIColor.clear
+        let dimmingView = GradientView(frame: CGRect.zero)
+        dimmingView.frame = view.bounds
+        view.insertSubview(dimmingView, at: 0)
     }
     
     func updateUI() {
@@ -90,6 +106,7 @@ class DetailViewController: UIViewController {
 //    MARK: - Actions
     
     @objc func closeVC(_ sender: UIButton) {
+        dismissStyle = .slide
         dismiss(animated: true)
     }
     
@@ -106,6 +123,23 @@ extension DetailViewController: UIGestureRecognizerDelegate {
     _ gestureRecognizer: UIGestureRecognizer,
     shouldReceive touch: UITouch
   ) -> Bool {
-    return (touch.view === self.view)
+      return (touch.view === self.view)
   }
+}
+
+
+
+extension DetailViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BounceAnimationController()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch dismissStyle {
+        case .slide: return SlideOutAnimationController()
+        case .fade: return FadeOutAnimationController()
+            }
+        }
+    
 }

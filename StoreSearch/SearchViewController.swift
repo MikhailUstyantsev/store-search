@@ -10,6 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    var landscapeVC: LandscapeViewController?
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -51,6 +52,18 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
 
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscape(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscape(with: coordinator)
+        @unknown default:
+            break
+        }
+    }
     
     private func setupView() {
 //        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
@@ -237,12 +250,48 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=50&entity=\(kind)"
+        let urlString = "https://itunes.apple.com/search?" + "term=\(encodedText)&limit=200&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
     }
     
+    func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        guard landscapeVC == nil else { return }
+        
+        landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+        if let controller = landscapeVC {
+            controller.view.frame = view.bounds
+            controller.view.alpha = 0
+            
+            view.addSubview(controller.view)
+//            Tell the SearchViewController that the LandscapeViewController is now managing that part of the screen, using addChild(). If you forget this step, then the new view controller may not always work correctly
+            addChild(controller)
+//            Tell the new view controller that it now has a parent view controller with didMove(toParent:)
+            coordinator.animate { _ in
+                controller.view.alpha = 1
+                self.searchBar.resignFirstResponder()
+            } completion: { _ in
+                controller.didMove(toParent: self)
+            }
+        }
+        if self.presentedViewController != nil {
+            self.dismiss(animated: true, completion: nil)
+        }
+      }
     
-    
+    func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        if let controller = landscapeVC {
+            controller.willMove(toParent: nil)
+            
+            coordinator.animate { _ in
+                controller.view.alpha = 0
+            } completion: { _ in
+                controller.view.removeFromSuperview()
+                controller.removeFromParent()
+                self.landscapeVC = nil
+            }
+          }
+        }
     
 }
