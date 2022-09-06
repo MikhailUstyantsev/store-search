@@ -261,6 +261,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
         if let controller = landscapeVC {
+            controller.searchResults = searchResults
             controller.view.frame = view.bounds
             controller.view.alpha = 0
             
