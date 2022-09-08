@@ -152,7 +152,6 @@ class LandscapeViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
     }
     
-    
     private func downLoadImage(for searchResult: SearchResult, andPlaceOn button: UIButton) {
         if let url = URL(string: searchResult.imageSmall) {
             let task = URLSession.shared.downloadTask(with: url) {
@@ -161,7 +160,8 @@ class LandscapeViewController: UIViewController {
     let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
         DispatchQueue.main.async {
           if let button = button {
-            button.setImage(image, for: .normal)
+//              button.imageView?.contentMode = .scaleAspectFill
+              button.setImage(image.resized(withBounds: CGSize(width: 60, height: 60)), for: .normal)
              }
            }
          }

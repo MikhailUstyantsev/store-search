@@ -35,7 +35,7 @@ extension UIImageView {
             if error == nil, let url = url,
                let data = try? Data(contentsOf: url),
                // 3
-                let image = UIImage(data: data) {
+               let image = UIImage (data: data) {
                 // 4
                 DispatchQueue.main.async {
                     if let weakSelf = self {

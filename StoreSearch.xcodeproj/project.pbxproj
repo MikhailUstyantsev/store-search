@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		838DB5B728C8F54800BF54E9 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838DB5B628C8F54800BF54E9 /* UIImage+Resize.swift */; };
 		83F3F45028B98B3100026941 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F44F28B98B3100026941 /* AppDelegate.swift */; };
 		83F3F45228B98B3100026941 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F45128B98B3100026941 /* SceneDelegate.swift */; };
 		83F3F45428B98B3100026941 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F45328B98B3100026941 /* SearchViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		838DB5B628C8F54800BF54E9 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		83F3F44C28B98B3100026941 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F3F44F28B98B3100026941 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F3F45128B98B3100026941 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				83F3F49928C1CB2900026941 /* SlideOutAnimationController.swift */,
 				83F3F49B28C1D6BF00026941 /* LandscapeViewController.swift */,
 				83F3F49528C0DC1800026941 /* GradientView.swift */,
+				838DB5B628C8F54800BF54E9 /* UIImage+Resize.swift */,
 				83F3F46D28BF1F9900026941 /* UIImageView+DownloadingImage.swift */,
 				83F3F46B28BC5E5200026941 /* LoadingCell.xib */,
 				83F3F46928BA9B9700026941 /* NothingFoundCell.xib */,
@@ -183,6 +186,7 @@
 				83F3F49828C1BA1800026941 /* BounceAnimationController.swift in Sources */,
 				83F3F46428BA040400026941 /* SearchResult.swift in Sources */,
 				83F3F45228B98B3100026941 /* SceneDelegate.swift in Sources */,
+				838DB5B728C8F54800BF54E9 /* UIImage+Resize.swift in Sources */,
 				83F3F46828BA95C100026941 /* SearchResultCell.swift in Sources */,
 				83F3F49A28C1CB2A00026941 /* SlideOutAnimationController.swift in Sources */,
 				83F3F49E28C468B600026941 /* FadeOutAnimationController.swift in Sources */,
