@@ -78,6 +78,16 @@ class DetailViewController: UIViewController {
             downloadTask = popUp.artworkImageView.loadImage(url: largeURL)
         }
         
+//        let traitCollection = UITraitCollection()
+//        
+//        if traitCollection.verticalSizeClass == .compact {
+//            popUp.container.heightAnchor.constraint(equalTo: popUp.heightAnchor, multiplier: 0.9).isActive = true
+//            popUp.heightAnchor.constraint(equalTo: popUp.heightAnchor, multiplier: 0.45).isActive = false
+//       } else {
+//           popUp.container.heightAnchor.constraint(equalTo: popUp.heightAnchor, multiplier: 0.45).isActive = true
+//           popUp.container.heightAnchor.constraint(equalTo: popUp.heightAnchor, multiplier: 0.9).isActive = false
+//       }
+        
         self.view.addSubview(popUp)
     }
     

@@ -134,8 +134,7 @@ class PopUP: UIView {
         container.layer.cornerRadius = 15
         return container
     }()
-
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -145,11 +144,23 @@ class PopUP: UIView {
         self.frame = UIScreen.main.bounds
         
         
+        
         self.addSubview(container)
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
+        
+        if traitCollection.verticalSizeClass == .compact {
+           container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = true
+            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45).isActive = false
+        } else {
+            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45).isActive = true
+            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = false
+        }
+        
+        
         container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45).isActive = true
+        
 //        container.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 60).isActive = true
     //        container.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: 60).isActive = true
         

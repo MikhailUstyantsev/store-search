@@ -45,8 +45,12 @@ class LandscapeViewController: UIViewController {
             firstTime = false
             
             switch search.state {
-            case .notSearchedYet, .loading, .noResults:
+            case .notSearchedYet:
                 break
+            case .noResults:
+                showNothingFoundLabel()
+            case .loading:
+                showSpinner()
             case .results(let list):
             tileButtons(list)
             }
@@ -96,6 +100,14 @@ class LandscapeViewController: UIViewController {
 
 //    MARK: - Private Methods
     
+    private func showSpinner() {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.center = CGPoint(x: scrollView.bounds.midX + 0.5, y: scrollView.bounds.midY + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+    
     private func tileButtons(_ searchResults: [SearchResult]) {
         let itemWidth: CGFloat = 94
         let itemHeight: CGFloat = 88
@@ -131,6 +143,8 @@ class LandscapeViewController: UIViewController {
             downLoadImage(for: result, andPlaceOn: button)
             
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row) * itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
+            button.tag = 2000 + index
+            button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
             
             scrollView.addSubview(button)
             
@@ -185,6 +199,59 @@ class LandscapeViewController: UIViewController {
         }
     }
     
+    private func showNothingFoundLabel() {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = "Nothing Found"
+        label.textColor = UIColor.label
+        label.backgroundColor = UIColor.clear
+        
+        label.sizeToFit()
+//        tells the label to resize itself to the optimal size
+        var rect = label.frame
+        rect.size.width = ceil(rect.size.width / 2) * 2
+//        here you use a little trick to always force the dimensions of the label to be even numbers:
+//        If you divide a number such as 11 by 2 you get 5.5. The ceil() function rounds up 5.5 to make 6, and then you multiply by 2 to get a final value of 12. This formula always gives you the next even number if the original is odd.
+//        You only need to do this because these values have type CGFloat. If they were integers, you wouldn’t have to worry about fractional parts.
+        rect.size.height = ceil(rect.size.height / 2) * 2
+//        make even
+        label.frame = rect
+        
+        label.center = CGPoint(x: scrollView.bounds.midX, y: scrollView.bounds.midY)
+        view.addSubview(label)
+    }
+    
+    private func hideSpinner() {
+        view.viewWithTag(1000)?.removeFromSuperview()
+    }
+    
+//    MARK: - Helper Methods
+    func searchResultsReceived() {
+        hideSpinner()
+        
+        switch search.state {
+        case .notSearchedYet, .loading:
+            break
+        case .noResults:
+            showNothingFoundLabel()
+          case .results(let list):
+            tileButtons(list)
+        }
+    }
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if case .results(let list) = search.state {
+        let destinatinVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
+        let searchResult = list[(sender as! UIButton).tag
+            - 2000]
+        destinatinVC.modalPresentationStyle = .overFullScreen
+        destinatinVC.searchResult = searchResult
+        self.present(destinatinVC, animated: true)
+            
+        }
+    }
+   
 
 }
 
