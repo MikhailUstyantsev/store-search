@@ -43,7 +43,13 @@ class LandscapeViewController: UIViewController {
 
         if firstTime {
             firstTime = false
-            tileButtons(search.searchResults)
+            
+            switch search.state {
+            case .notSearchedYet, .loading, .noResults:
+                break
+            case .results(let list):
+            tileButtons(list)
+            }
         }
     }
 
