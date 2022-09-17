@@ -10,6 +10,10 @@
 		838DB5B728C8F54800BF54E9 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838DB5B628C8F54800BF54E9 /* UIImage+Resize.swift */; };
 		838DB5DB28CA547600BF54E9 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838DB5DA28CA547600BF54E9 /* Search.swift */; };
 		838DB5DD28CA56C600BF54E9 /* Temporary file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838DB5DC28CA56C600BF54E9 /* Temporary file.swift */; };
+		838DB5DE28CF950500BF54E9 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838DB5E028CF950500BF54E9 /* NothingFoundCell.xib */; };
+		838DB5E228CF976E00BF54E9 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838DB5E428CF976E00BF54E9 /* LoadingCell.xib */; };
+		838DB5EB28D239D000BF54E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 838DB5ED28D239D000BF54E9 /* Localizable.strings */; };
+		838DB5F128D5617D00BF54E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 838DB5F328D5617D00BF54E9 /* InfoPlist.strings */; };
 		83F3F45028B98B3100026941 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F44F28B98B3100026941 /* AppDelegate.swift */; };
 		83F3F45228B98B3100026941 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F45128B98B3100026941 /* SceneDelegate.swift */; };
 		83F3F45428B98B3100026941 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F45328B98B3100026941 /* SearchViewController.swift */; };
@@ -18,8 +22,6 @@
 		83F3F46428BA040400026941 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F46328BA040400026941 /* SearchResult.swift */; };
 		83F3F46628BA8BA600026941 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F3F46528BA8BA600026941 /* SearchResultCell.xib */; };
 		83F3F46828BA95C100026941 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F46728BA95C100026941 /* SearchResultCell.swift */; };
-		83F3F46A28BA9B9700026941 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F3F46928BA9B9700026941 /* NothingFoundCell.xib */; };
-		83F3F46C28BC5E5200026941 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F3F46B28BC5E5200026941 /* LoadingCell.xib */; };
 		83F3F46E28BF1F9A00026941 /* UIImageView+DownloadingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F46D28BF1F9900026941 /* UIImageView+DownloadingImage.swift */; };
 		83F3F47028BF488600026941 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F46F28BF488600026941 /* DetailViewController.swift */; };
 		83F3F47228BF4CF000026941 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3F47128BF4CF000026941 /* PopUp.swift */; };
@@ -34,6 +36,15 @@
 		838DB5B628C8F54800BF54E9 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		838DB5DA28CA547600BF54E9 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		838DB5DC28CA56C600BF54E9 /* Temporary file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temporary file.swift"; sourceTree = "<group>"; };
+		838DB5DF28CF950500BF54E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
+		838DB5E128CF95A500BF54E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
+		838DB5E328CF976E00BF54E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
+		838DB5E628CF979600BF54E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoadingCell.strings; sourceTree = "<group>"; };
+		838DB5E828CF999800BF54E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		838DB5EC28D239D000BF54E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		838DB5EE28D23B4100BF54E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		838DB5F228D5617D00BF54E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		838DB5F428D5618200BF54E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83F3F44C28B98B3100026941 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F3F44F28B98B3100026941 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F3F45128B98B3100026941 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,8 +55,6 @@
 		83F3F46328BA040400026941 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		83F3F46528BA8BA600026941 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		83F3F46728BA95C100026941 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
-		83F3F46928BA9B9700026941 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
-		83F3F46B28BC5E5200026941 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		83F3F46D28BF1F9900026941 /* UIImageView+DownloadingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadingImage.swift"; sourceTree = "<group>"; };
 		83F3F46F28BF488600026941 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		83F3F47128BF4CF000026941 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
@@ -99,15 +108,17 @@
 				83F3F49528C0DC1800026941 /* GradientView.swift */,
 				838DB5B628C8F54800BF54E9 /* UIImage+Resize.swift */,
 				83F3F46D28BF1F9900026941 /* UIImageView+DownloadingImage.swift */,
-				83F3F46B28BC5E5200026941 /* LoadingCell.xib */,
-				83F3F46928BA9B9700026941 /* NothingFoundCell.xib */,
+				838DB5E428CF976E00BF54E9 /* LoadingCell.xib */,
+				838DB5E028CF950500BF54E9 /* NothingFoundCell.xib */,
 				83F3F46728BA95C100026941 /* SearchResultCell.swift */,
 				83F3F46528BA8BA600026941 /* SearchResultCell.xib */,
 				83F3F46328BA040400026941 /* SearchResult.swift */,
 				83F3F45528B98B3100026941 /* Main.storyboard */,
 				83F3F45828B98B3200026941 /* Assets.xcassets */,
 				83F3F45D28B98B3200026941 /* Info.plist */,
+				838DB5F328D5617D00BF54E9 /* InfoPlist.strings */,
 				838DB5DC28CA56C600BF54E9 /* Temporary file.swift */,
+				838DB5ED28D239D000BF54E9 /* Localizable.strings */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -154,6 +165,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 83F3F44328B98B3100026941;
 			productRefGroup = 83F3F44D28B98B3100026941 /* Products */;
@@ -171,9 +183,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F3F45928B98B3200026941 /* Assets.xcassets in Resources */,
-				83F3F46C28BC5E5200026941 /* LoadingCell.xib in Resources */,
+				838DB5F128D5617D00BF54E9 /* InfoPlist.strings in Resources */,
+				838DB5EB28D239D000BF54E9 /* Localizable.strings in Resources */,
+				838DB5E228CF976E00BF54E9 /* LoadingCell.xib in Resources */,
 				83F3F46628BA8BA600026941 /* SearchResultCell.xib in Resources */,
-				83F3F46A28BA9B9700026941 /* NothingFoundCell.xib in Resources */,
+				838DB5DE28CF950500BF54E9 /* NothingFoundCell.xib in Resources */,
 				83F3F45728B98B3100026941 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,10 +221,47 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		838DB5E028CF950500BF54E9 /* NothingFoundCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				838DB5DF28CF950500BF54E9 /* en */,
+				838DB5E128CF95A500BF54E9 /* ru */,
+			);
+			name = NothingFoundCell.xib;
+			sourceTree = "<group>";
+		};
+		838DB5E428CF976E00BF54E9 /* LoadingCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				838DB5E328CF976E00BF54E9 /* Base */,
+				838DB5E628CF979600BF54E9 /* ru */,
+			);
+			name = LoadingCell.xib;
+			sourceTree = "<group>";
+		};
+		838DB5ED28D239D000BF54E9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				838DB5EC28D239D000BF54E9 /* en */,
+				838DB5EE28D23B4100BF54E9 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		838DB5F328D5617D00BF54E9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				838DB5F228D5617D00BF54E9 /* en */,
+				838DB5F428D5618200BF54E9 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		83F3F45528B98B3100026941 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				83F3F45628B98B3100026941 /* Base */,
+				838DB5E828CF999800BF54E9 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -222,6 +273,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -282,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

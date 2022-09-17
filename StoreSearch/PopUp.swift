@@ -151,11 +151,11 @@ class PopUP: UIView {
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         
         if traitCollection.verticalSizeClass == .compact {
-           container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = true
+           container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
             container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45).isActive = false
         } else {
             container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45).isActive = true
-            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = false
+            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = false
         }
         
         

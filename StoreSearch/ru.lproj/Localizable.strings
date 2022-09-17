@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  StoreSearch
+
+  Created by Mikhail Ustyantsev on 14.09.2022.
+  
+*/
+
+/* Localized kind: Album */
+"Album" = "Альбом";
+/* Localized kind: Software */
+"App" = "Приложение";
+/* Localized kind: Audio Book */
+"Audio Book" = "Аудио Книга";
+/* Localized kind: Book */
+"Book" = "Книга";
+/* Localized kind: E-Book */
+"E-Book" = "Электронная книга";
+/* Localized kind: Feature Movie */
+"Movie" = "Фильм";
+/* Localized kind: Music Video */
+"Music Video" = "Видео клип";
+/* Localized kind: Podcast */
+"Podcast" = "Подкаст";
+/* Localized kind: Song */
+"Song" = "Песня";
+/* Localized kind: TV Episode */
+"TV Episode" = "Телесериал";
